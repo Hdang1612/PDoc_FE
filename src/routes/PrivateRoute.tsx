@@ -1,13 +1,14 @@
-// src/routes/PrivateRoute.tsx
+// src/guards/PrivateRoute.tsx
 import { Navigate } from "react-router-dom";
+import { auth } from "../api/auth";
 
 interface Props {
-  isAuthenticated: boolean;
-  children: React.ReactNode;
+  children: any;
 }
 
-const PrivateRoute = ({ isAuthenticated, children }: Props) => {
-  return isAuthenticated ? children : <Navigate to="/login" replace />;
+const PrivateRoute = ({ children }: Props) => {
+  console.log(auth.isAuthenticated());
+  return auth.isAuthenticated() ? children : <Navigate to="/login" replace />;
 };
 
 export default PrivateRoute;

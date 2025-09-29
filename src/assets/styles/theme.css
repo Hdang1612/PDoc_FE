@@ -1,0 +1,13 @@
+@theme {
+      --color-red: #D7301F;
+      --color-orange: #FC8D59;
+      --color-yellow: #FDCC8A;
+      --color-cream: #FFF0D9;
+
+      --color-gradient-red-orange: linear-gradient(135deg, #D7301F 0%, #FC8D59 100%);
+      --color-gradient-orange-yellow: linear-gradient(135deg, #FC8D59 0%, #FDCC8A 100%);
+      --color-gradient-yellow-cream: linear-gradient(135deg, #FDCC8A 0%, #FFF0D9 100%);
+      --color-gradient-warm-sunset: linear-gradient(135deg, #D7301F 0%, #FC8D59 50%, #FDCC8A 80%, #FFF0D9 100%);
+
+      --font-body: "Nunito", sans-serif;
+}

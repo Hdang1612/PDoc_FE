@@ -5,11 +5,12 @@ import PrivateRoute from "./PrivateRoute";
 // import Home from "../pages/Home";
 import MainLayout from "../layout/MainLayout";
 import NotFound from "../pages/NotFound";
+import Login from "../pages/Login";
 
 // Lazy load pages
 const Home = lazy(() => import("../pages/Home"));
 const AppRoutes = () => {
-  const isAuthenticated = true; 
+  //   const isAuthenticated = true;
 
   return useRoutes([
     {
@@ -18,9 +19,9 @@ const AppRoutes = () => {
       children: [
         { index: true, element: <Home /> },
         {
-          path: "dashboard",
+          path: "home",
           element: (
-            <PrivateRoute isAuthenticated={isAuthenticated}>
+            <PrivateRoute>
               {/* <Dashboard /> */}
               <Home />
             </PrivateRoute>
@@ -28,7 +29,7 @@ const AppRoutes = () => {
         },
       ],
     },
-    // { path: "/login", element: <Login /> },
+    { path: "/login", element: <Login /> },
     { path: "*", element: <NotFound /> },
   ]);
 };
