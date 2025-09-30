@@ -11,4 +11,9 @@ html {
   font-family: 'Inter', sans-serif;
   /* color: white; */
   scroll-behavior: smooth;
+  color: #2a1111;
+}
+
+.custom-btn {
+  padding: 16px 32px !important;
 }

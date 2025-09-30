@@ -5,6 +5,7 @@
   --color-orange: #fc8d59;
   --color-yellow: #fdcc8a;
   --color-cream: #fff0d9;
+  --color-text: #2a1111;
 
   --gradient-red-orange: linear-gradient(135deg, #d7301f 0%, #fc8d59 100%);
   --gradient-orange-yellow: linear-gradient(135deg, #fc8d59 0%, #fdcc8a 100%);
