@@ -1,6 +1,6 @@
-import { Button } from "antd";
-import { LoadingOverlay } from "./LoadingOverlay";
-import { useState } from "react";
+import { Button } from 'antd';
+import { LoadingOverlay } from './overlayloading';
+import { useState } from 'react';
 
 const DemoLoadingButton = () => {
   const [loading, setLoading] = useState(false);

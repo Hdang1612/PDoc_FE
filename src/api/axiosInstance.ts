@@ -24,19 +24,6 @@ const processQueue = (error: any, token: string | null = null) => {
   failedQueue = [];
 };
 
-// Request Interceptor req
-// axiosInstance.interceptors.request.use(
-//   (config: AxiosRequestConfig) => {
-//     const token = localStorage.getItem("accessToken");
-//     if (token && config.headers) {
-//       config.headers.Authorization = `Bearer ${token}`;
-//     }
-//     return config;
-//   },
-//   (error: AxiosError) => {
-//     return Promise.reject(error);
-//   }
-// );
 axiosInstance.interceptors.request.use(
   (config: AxiosRequestConfig) => {
     const token = tokenService.getAccess();
@@ -48,24 +35,6 @@ axiosInstance.interceptors.request.use(
   (error: AxiosError) => Promise.reject(error)
 );
 
-// Response Interceptor res
-// axiosInstance.interceptors.response.use(
-//   (response: AxiosResponse) => {
-//     return response.data; // trả về data thôi, đỡ phải response.data mỗi lần
-//   },
-//   (error: AxiosError) => {
-//     if (error.response) {
-//       // Xử lý lỗi chung
-//       if (error.response.status === 401) {
-//         console.warn('Unauthorized! Redirecting to login...');
-//         // Ví dụ: logout hoặc redirect
-//         localStorage.removeItem('accessToken');
-//         window.location.href = '/login';
-//       }
-//     }
-//     return Promise.reject(error);
-//   }
-// );
 axiosInstance.interceptors.response.use(
   (response: AxiosResponse) => response.data,
   async (error: AxiosError) => {
@@ -77,7 +46,7 @@ axiosInstance.interceptors.response.use(
 
       const refreshToken = tokenService.getRefresh();
       if (!refreshToken) {
-        console.warn('No refresh token -> logout');
+        console.warn('No refresh token');
         tokenService.clear();
         window.location.href = '/login';
         return Promise.reject(error);
@@ -102,8 +71,8 @@ axiosInstance.interceptors.response.use(
       try {
         const res = await axios.post(`${API_URL}/auth/refresh`, { refreshToken });
 
-        const newAccessToken = (res as any).data?.accessToken;
-        const newRefreshToken = (res as any).data?.refreshToken || refreshToken;
+        const newAccessToken = res.data?.accessToken;
+        const newRefreshToken = res.data?.refreshToken || refreshToken;
 
         tokenService.setAccess(newAccessToken);
         tokenService.setRefresh(newRefreshToken);
@@ -118,8 +87,7 @@ axiosInstance.interceptors.response.use(
         return axiosInstance(originalRequest);
       } catch (refreshError) {
         processQueue(refreshError, null);
-        tokenService.removeAccess();
-        tokenService.removeRefresh();
+        tokenService.clear();
         window.location.href = '/login';
         return Promise.reject(refreshError);
       } finally {

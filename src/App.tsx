@@ -1,8 +1,8 @@
-import { BrowserRouter } from "react-router-dom";
-import "./App.css";
-import { Suspense } from "react";
-import AppRoutes from "./routes";
-import { LoadingOverlay } from "./components/LoadingOverlay";
+import { BrowserRouter } from 'react-router-dom';
+import './App.css';
+import { Suspense } from 'react';
+import AppRoutes from './routes';
+import { LoadingOverlay } from './components/overlayloading';
 
 function App() {
   return (
