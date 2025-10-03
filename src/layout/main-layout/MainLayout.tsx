@@ -3,7 +3,10 @@ import SideBar from '../../components/sidebar';
 import { LeftOutlined } from '@ant-design/icons';
 import { Layout } from 'antd';
 import { useState } from 'react';
+import './style.css';
+import Header from './Header';
 const { Sider, Content } = Layout;
+
 const MainLayout = () => {
   const [collapsed, setCollapsed] = useState(false);
   return (
@@ -31,7 +34,10 @@ const MainLayout = () => {
         </div>
       </div>
       <Content>
-        <Outlet />
+        <Header />
+        <div className="px-6 py-4">
+          <Outlet />
+        </div>
       </Content>
     </Layout>
   );

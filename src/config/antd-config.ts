@@ -43,6 +43,8 @@ export const antdTheme: ThemeConfig = {
     Menu: {
       itemBg: '#fff',
       popupBg: '#fff',
+      iconSize: 18,
+      collapsedIconSize: 18,
     },
     Button: {
       controlHeight: 36,
