@@ -9,7 +9,7 @@ export const locales = {
 export const antdTheme: ThemeConfig = {
   token: {
     // Primary colors
-    colorPrimary: '#1890ff',
+    colorPrimary: '#d7301f',
     colorSuccess: '#52c41a',
     colorWarning: '#faad14',
     colorError: '#ff4d4f',
@@ -35,12 +35,21 @@ export const antdTheme: ThemeConfig = {
   },
 
   components: {
+    Layout: {
+      headerBg: '#fff',
+      siderBg: '#fff',
+      footerBg: '#fff',
+    },
+    Menu: {
+      itemBg: '#fff',
+      popupBg: '#fff',
+    },
     Button: {
       controlHeight: 36,
       borderRadius: 6,
       fontWeight: 500,
-      defaultHoverBg: '#000',
-      defaultBg: '#fff',
+      defaultHoverBg: '#fc8d59',
+      defaultBg: '#fc8d59',
     },
     Input: {
       controlHeight: 40,

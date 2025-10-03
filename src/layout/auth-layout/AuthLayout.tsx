@@ -1,5 +1,5 @@
 import { Outlet } from 'react-router-dom';
-import bgLogin from '../assets/images/bg-login.svg';
+import bgLogin from '../../assets/images/bg-login.svg';
 
 function AuthLayout() {
   return (
