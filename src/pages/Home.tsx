@@ -53,10 +53,11 @@ const Home = () => {
       >
         hello
       </button>
-      <Button color="default" shape="round" variant="solid" size="middle">
+      <Button onClick={handleSubmit} shape="round" variant="solid">
         Solid
       </Button>
-      <DemoLoadingButton/>
+      <Button>Nút Primary</Button>
+      <DemoLoadingButton>Hello</DemoLoadingButton>
       {/* <Button /> */}
       <ToastContainerConfig />
       <div className="flex flex-col gap-4 p-4">

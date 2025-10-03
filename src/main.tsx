@@ -1,10 +1,10 @@
-import { StrictMode } from 'react'
-import { createRoot } from 'react-dom/client'
-import './index.css'
-import App from './App.tsx'
+import { createRoot } from 'react-dom/client';
+import './index.css';
+import App from './App.tsx';
+import { AntdConfigProvider } from './config/antd-locale.config.tsx';
 
 createRoot(document.getElementById('root')!).render(
-  <StrictMode>
+  <AntdConfigProvider locale="vi">
     <App />
-  </StrictMode>,
-)
+  </AntdConfigProvider>
+);
