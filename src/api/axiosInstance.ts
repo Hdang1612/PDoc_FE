@@ -1,6 +1,7 @@
 // src/api/axiosInstance.ts
 import axios, { AxiosError, AxiosInstance, AxiosRequestConfig, AxiosResponse } from 'axios';
 import { tokenService } from '../utils/tokens';
+import { showError } from '@/utils/toast';
 
 const axiosInstance: AxiosInstance = axios.create({
   baseURL: import.meta.env.VITE_API_URL || 'http://localhost:3000/api',
@@ -39,7 +40,10 @@ axiosInstance.interceptors.response.use(
   (response: AxiosResponse) => response.data,
   async (error: AxiosError) => {
     const originalRequest = error.config as AxiosRequestConfig & { _retry?: boolean };
-
+    if (error.code === 'ECONNABORTED') {
+      showError('Yêu cầu quá thời gian, vui lòng thử lại sau.');
+      return Promise.reject(error);
+    }
     // Nếu lỗi 401 và chưa retry -> thử refresh
     if (error.response?.status === 401 && !originalRequest._retry) {
       originalRequest._retry = true;
@@ -93,6 +97,29 @@ axiosInstance.interceptors.response.use(
       } finally {
         isRefreshing = false;
       }
+    }
+    if (error.response) {
+      const status = error.response.status;
+      const msg = (error.response.data as any)?.message;
+
+      switch (status) {
+        case 400:
+          showError(msg || 'Yêu cầu không hợp lệ');
+          break;
+        case 403:
+          showError('Bạn không có quyền thực hiện hành động này');
+          break;
+        case 404:
+          showError('Không tìm thấy dữ liệu');
+          break;
+        case 500:
+          showError('Lỗi server, vui lòng thử lại sau');
+          break;
+        default:
+          showError(msg || 'Có lỗi xảy ra');
+      }
+    } else {
+      showError('Không thể kết nối tới server');
     }
 
     return Promise.reject(error);
