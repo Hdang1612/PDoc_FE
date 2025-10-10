@@ -24,6 +24,7 @@ export const antdTheme: ThemeConfig = {
 
     // Layout
     controlHeight: 32,
+    colorBgLayout: 'rgba(255, 255, 255, 0.3)',
 
     // Spacing - có thể tùy chỉnh theo design system của bạn
     marginXS: 8,
@@ -43,8 +44,8 @@ export const antdTheme: ThemeConfig = {
     Menu: {
       itemBg: '#fff',
       popupBg: '#fff',
-      iconSize: 18,
-      collapsedIconSize: 18,
+      iconSize: 16,
+      collapsedIconSize: 16,
     },
     Button: {
       controlHeight: 36,

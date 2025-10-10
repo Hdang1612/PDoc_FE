@@ -22,7 +22,7 @@ const AppRoutes = () => {
       path: '/',
       element: <MainLayout />,
       children: [
-        // { index: true, element: <Home /> },
+        { index: true, element: <Home /> },
         {
           element: <ProtectedRoute roles={['admin']} />,
           children: [{ path: 'home', element: <Home /> }],

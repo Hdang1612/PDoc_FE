@@ -1,3 +1,21 @@
 .ant-layout-sider {
   border-right: 1px solid #e0e0e0;
 }
+
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 64px;
+  /* display: flex;
+  align-items: center;
+  justify-content: center; */
+  z-index: 100;
+  backdrop-filter: blur(10px);
+  background-color: rgba(255, 255, 255, 0.3); 
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2); 
+  transition:
+    background-color 0.3s ease,
+    backdrop-filter 0.3s ease;
+}
