@@ -1,7 +1,8 @@
 // src/api/axiosInstance.ts
 import axios, { AxiosError, AxiosInstance, AxiosRequestConfig, AxiosResponse } from 'axios';
 import { tokenService } from '../utils/tokens';
-import { showError } from '@/utils/toast';
+import { showError } from '../utils/toast';
+import { refreshTokenService } from './authService';
 
 const axiosInstance: AxiosInstance = axios.create({
   baseURL: import.meta.env.VITE_API_URL || 'http://localhost:3000/api',
@@ -73,7 +74,7 @@ axiosInstance.interceptors.response.use(
       isRefreshing = true;
 
       try {
-        const res = await axios.post(`${API_URL}/auth/refresh`, { refreshToken });
+        const res = await refreshTokenService(refreshToken);
 
         const newAccessToken = res.data?.accessToken;
         const newRefreshToken = res.data?.refreshToken || refreshToken;

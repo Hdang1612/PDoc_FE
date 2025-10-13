@@ -4,7 +4,7 @@ import { UserOutlined, VideoCameraOutlined, UploadOutlined, MailOutlined } from 
 import './style.css';
 const SideBar: React.FC<{ collapsed: boolean }> = ({ collapsed }) => {
   return (
-    <div className="h-screen flex-col overflow-hidden">
+    <div className="flex-col overflow-hidden">
       {/* Menu */}
       <Menu
         mode="inline"

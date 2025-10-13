@@ -14,10 +14,14 @@ import { usePermission } from '../hooks/usePermission';
 import { Role } from '../interface/role';
 import { storage } from '../utils/localStorage';
 import SearchBar from '../components/searchbar';
+import CommonModal from '../components/modal';
+import SubjectCard from '../components/subjectcard';
+import { shareService } from '../utils/share';
 
 const Home = () => {
   storage.set('role', 'teacher');
   const { role, hasRole } = usePermission();
+  const loading: boolean = false;
   const options = [
     { label: 'Hà Nội', value: 'Hà Nội' },
     { label: 'HCM', value: 'HCM' },
@@ -31,6 +35,15 @@ const Home = () => {
   const handleSubmit = () => {
     showSuccess('Thêm mới thành công!');
   };
+  const shareToFacebook = () => {
+    const shareUrl = encodeURIComponent('https://example.com/san-pham-abc');
+    window.open(
+      `https://www.facebook.com/sharer/sharer.php?u=${shareUrl}`,
+      'fbShareWindow',
+      'width=600,height=500,left=200,top=100,toolbar=no,menubar=no,scrollbars=no,resizable=yes'
+    );
+  };
+
   const handleSearch = (query: string) => {
     // sau này gọi API ở đây
     console.log('Searching for:', query);
@@ -54,6 +67,11 @@ const Home = () => {
   const [hobbies, setHobbies] = useState(['coding']);
   const [dob, setDob] = useState<Dayjs>();
   const [range, setRange] = useState<[Dayjs, Dayjs]>();
+  const [open, setOpen] = useState(false);
+  const handleConfirm = () => {
+    console.log('Đã xác nhận');
+    setOpen(false);
+  };
   return (
     <>
       <h2>Current Role: {role ?? 'guest'}</h2>
@@ -62,7 +80,7 @@ const Home = () => {
       {hasRole([Role.Admin, Role.Student]) && <button>Manage Users</button>}
       <button
         className="font-body cursor-pointer px-4 py-2 text-black sm:px-8 sm:py-3"
-        onClick={handleSubmit}
+        onClick={shareToFacebook}
         // style={{ background: 'var(--gradient-red-orange)' }}
       >
         hello
@@ -70,8 +88,20 @@ const Home = () => {
       <Button onClick={handleSubmit} shape="round" variant="solid">
         Solid
       </Button>
-      <Button>Nút Primary</Button>
+      <Button onClick={() => setOpen(true)}>Open Modal</Button>
       <DemoLoadingButton>Hello</DemoLoadingButton>
+      <SubjectCard
+        // image={exam.imageUrl}
+        // fallbackImage="/default-exam.jpg"
+        loading={loading}
+        width="400px"
+        title="Lịch sử Đảng cộng sản Việt Nam HUBT (chuẩn 2025)"
+        date="15/03/2025"
+        questions={120}
+        views={5178}
+        orgName="TNM HUBT"
+        onClick={() => console.log('exam clicked')}
+      />
       {/* <Button /> */}
       <ToastContainerConfig />
       <div className="flex flex-col gap-4 p-4">
@@ -133,6 +163,16 @@ const Home = () => {
           }}
         />
       </div>
+
+      <CommonModal
+        // confirmLoading={true}
+        open={open}
+        title="Xác nhận xóa người dùng"
+        onOk={handleConfirm}
+        onCancel={() => setOpen(false)}
+      >
+        <p>Bạn có chắc chắn muốn xóa người dùng này không?</p>
+      </CommonModal>
     </>
   );
 };

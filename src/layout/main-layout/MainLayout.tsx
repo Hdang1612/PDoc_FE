@@ -1,6 +1,6 @@
 import { Outlet } from 'react-router-dom';
 import SideBar from '../../components/sidebar';
-import { BellOutlined, LeftOutlined } from '@ant-design/icons';
+import { BellOutlined, LeftOutlined, LogoutOutlined, UserOutlined } from '@ant-design/icons';
 import { Button, Layout } from 'antd';
 import { useState } from 'react';
 import './style.css';
@@ -13,6 +13,24 @@ const { Sider, Content } = Layout;
 
 const MainLayout = () => {
   const [collapsed, setCollapsed] = useState(false);
+  const userMenuItems = [
+    {
+      key: 'profile',
+      label: 'Thông tin cá nhân',
+      icon: <UserOutlined />,
+      onClick: () => console.log('Đi đến trang profile'),
+    },
+    {
+      type: 'divider',
+    },
+    {
+      key: 'logout',
+      label: 'Đăng xuất',
+      icon: <LogoutOutlined />,
+      danger: true,
+      onClick: () => console.log('Đăng xuất'),
+    },
+  ];
   return (
     <Layout>
       <div>
@@ -58,10 +76,19 @@ const MainLayout = () => {
                 },
               ]}
             />
-            <div className="avatar h-10 w-10 overflow-hidden rounded-full">
-              <img className="w-full" src={avatar} />
-            </div>
-            <p className="u-name"> To Hai Dang</p>
+            <CommonDropdown
+              triggerElement={
+                <div className="user-container flex cursor-pointer items-center gap-2">
+                  <div className="avatar h-10 w-10 overflow-hidden rounded-full">
+                    <img className="w-full" src={avatar} />
+                  </div>
+                  <p className="u-name">To Hai Dang</p>
+                </div>
+              }
+              menuItems={userMenuItems}
+              triggerType={['hover']}
+              placement="bottom"
+            />
           </div>
         </div>
       </div>

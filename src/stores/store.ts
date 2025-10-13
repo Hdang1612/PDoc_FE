@@ -1,10 +1,12 @@
 import userReducer from './user/userSlice';
+import authReducer from './auth/authSlice';
 // src/app/store.ts
 import { configureStore } from '@reduxjs/toolkit';
 // Tạo store gốc
 export const store = configureStore({
   reducer: {
     user: userReducer,
+    auth: authReducer,
   },
 });
 

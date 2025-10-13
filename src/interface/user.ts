@@ -5,3 +5,9 @@ export interface User {
   email: string;
   role: 'admin' | 'user' | 'guest';
 }
+
+export interface AuthResponse {
+  accessToken: string;
+  refreshToken?: string;
+  user: User;
+}
