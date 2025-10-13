@@ -1,17 +1,16 @@
-import React from "react";
-import { Result, Button } from "antd";
-import { useNavigate } from "react-router-dom";
+import { Result, Button } from 'antd';
+import { useNavigate } from 'react-router-dom';
+import { statusMessages } from '../constants/router';
 
-const NotFound: React.FC = () => {
+const NotFound = ({ statusCode }: { statusCode: any }) => {
   const navigate = useNavigate();
-
   return (
     <Result
-      status="404"
-      title="404"
-      subTitle="Xin lỗi, trang bạn truy cập không tồn tại."
+      status={statusCode}
+      title={statusCode}
+      subTitle={statusMessages[statusCode]}
       extra={
-        <Button type="primary" onClick={() => navigate("/")}>
+        <Button type="primary" onClick={() => navigate('/')}>
           Quay về trang chủ
         </Button>
       }

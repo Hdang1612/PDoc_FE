@@ -1,5 +1,4 @@
 import { Button } from 'antd';
-import { ToastContainerConfig } from '../components/toast';
 import { showSuccess } from '../utils/toast';
 import SelectInput from '../components/select';
 import { useState } from 'react';
@@ -76,7 +75,6 @@ const Home = () => {
     <>
       <h2>Current Role: {role ?? 'guest'}</h2>
       <SearchBar placeholder="Search users, courses..." onSearch={handleSearch} />
-      {/* Chỉ Admin mới thấy */}
       {hasRole([Role.Admin, Role.Student]) && <button>Manage Users</button>}
       <button
         className="font-body cursor-pointer px-4 py-2 text-black sm:px-8 sm:py-3"
@@ -103,7 +101,7 @@ const Home = () => {
         onClick={() => console.log('exam clicked')}
       />
       {/* <Button /> */}
-      <ToastContainerConfig />
+      {/* <ToastContainerConfig /> */}
       <div className="flex flex-col gap-4 p-4">
         {/* Single Select */}
         <SelectInput label="Thành phố" value={city} options={options} onChange={setCity} />

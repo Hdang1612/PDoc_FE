@@ -3,6 +3,7 @@ import './App.css';
 import { Suspense } from 'react';
 import AppRoutes from './routes';
 import { LoadingOverlay } from './components/overlayloading';
+import { ToastContainer } from 'react-toastify';
 
 function App() {
   return (
@@ -10,6 +11,7 @@ function App() {
       <Suspense fallback={<LoadingOverlay visible={true} />}>
         <AppRoutes />
       </Suspense>
+      <ToastContainer/>
     </BrowserRouter>
   );
 }

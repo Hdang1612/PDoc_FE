@@ -1,7 +1,7 @@
 import { Outlet } from 'react-router-dom';
 import SideBar from '../../components/sidebar';
 import { BellOutlined, LeftOutlined, LogoutOutlined, UserOutlined } from '@ant-design/icons';
-import { Button, Layout } from 'antd';
+import { Badge, Button, Layout } from 'antd';
 import { useState } from 'react';
 import './style.css';
 // import Header from './Header';
@@ -51,16 +51,19 @@ const MainLayout = () => {
               className={`h-full w-[80px] transform duration-500 ease-in-out`}
             />
           </Link>
-          <div className="right-container flex items-center gap-3">
+          <div className="right-container flex items-center gap-5">
             {/* <Button icon={<BellOutlined style={{ fontSize: '18px', color: 'white' }} />} /> */}
             <CommonDropdown
               placement="bottomRight"
               tooltip="Thông báo"
               triggerElement={
-                <Button
-                  type="primary"
-                  icon={<BellOutlined style={{ fontSize: '18px', color: 'white' }} />}
-                ></Button>
+                <Badge count={99} overflowCount={10}>
+                  {/* <Avatar shape="square" size="large" /> */}
+                  <Button
+                    type="primary"
+                    icon={<BellOutlined style={{ fontSize: '18px', color: 'white' }} />}
+                  ></Button>
+                </Badge>
               }
               menuItems={[
                 {
@@ -101,10 +104,19 @@ const MainLayout = () => {
           collapsedWidth={80}
           onCollapse={(value) => setCollapsed(value)}
           className="fixed top-[65px] left-0 h-[calc(100vh-65px)] overflow-auto bg-white shadow-md"
+          style={{ position: 'fixed', overflow: 'visible' }}
         >
           <SideBar collapsed={collapsed} />
+          <div
+            className={`bg-orange absolute top-[20vh] right-[-16px] flex h-8 w-8 cursor-pointer items-center justify-center rounded-full transition-all duration-300`}
+            onClick={() => setCollapsed(!collapsed)}
+          >
+            <LeftOutlined
+              className={`transition-transform duration-300 ${collapsed ? 'rotate-180' : 'rotate-0'}`}
+            />
+          </div>
         </Sider>
-        <div className="relative">
+        {/* <div className="relative">
           <div
             className="bg-orange absolute top-[20vh] left-[-20px] flex h-8 w-8 cursor-pointer items-center justify-center rounded-full"
             onClick={() => setCollapsed(!collapsed)}
@@ -115,8 +127,8 @@ const MainLayout = () => {
               <LeftOutlined />
             </div>
           </div>
-        </div>
-        <Content>
+        </div> */}
+        <Content style={{ marginLeft: collapsed ? 80 : 220, transition: 'all .2s ' }}>
           <div className="px-6 py-4 pt-[65px]">
             <Outlet />
           </div>

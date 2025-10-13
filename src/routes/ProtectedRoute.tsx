@@ -9,7 +9,7 @@ interface User {
 }
 
 const ProtectedRoute = ({ roles = [] as string[] }) => {
-  const token = storage.get('token');
+  const token = storage.get('accessToken');
   const user = storage.get<User>('user');
 
   if (!token || !user) {
@@ -17,7 +17,7 @@ const ProtectedRoute = ({ roles = [] as string[] }) => {
   }
 
   if (roles.length > 0 && !roles.includes(user.role)) {
-    return <Navigate to="/forbidden" replace />;
+    return <Navigate to="/unAuthor" replace />;
   }
 
   return <Outlet />;

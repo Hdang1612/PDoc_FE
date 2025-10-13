@@ -7,6 +7,7 @@ import NotFound from '../pages/NotFound';
 // import Login from '../pages/auth/Login';
 import AuthLayout from '../layout/auth-layout/AuthLayout';
 import LoginForm from '../pages/auth/components/LoginForm';
+import Document from '../pages/document';
 import ForgotPwdForm from '../pages/auth/components/ForgotPwdForm';
 import SignUpForm from '../pages/auth/components/SignUpForm';
 import ConfirmOTP from '../pages/auth/components/ConfirmOTP';
@@ -24,8 +25,11 @@ const AppRoutes = () => {
       children: [
         { index: true, element: <Home /> },
         {
-          element: <ProtectedRoute roles={['admin']} />,
-          children: [{ path: 'home', element: <Home /> }],
+          element: <ProtectedRoute />,
+          children: [
+            { path: 'home', element: <Home /> },
+            { path: 'document', element: <Document /> },
+          ],
         },
       ],
     },
@@ -39,7 +43,8 @@ const AppRoutes = () => {
         { path: 'confirm-otp', element: <ConfirmOTP /> },
       ],
     },
-    { path: '*', element: <NotFound /> },
+    { path: 'unAuthor', element: <NotFound statusCode={403} /> },
+    { path: '*', element: <NotFound statusCode={401} /> },
   ]);
 };
 
