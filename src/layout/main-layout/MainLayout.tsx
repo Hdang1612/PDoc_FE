@@ -1,4 +1,4 @@
-import { Outlet } from 'react-router-dom';
+import { Outlet, useNavigate } from 'react-router-dom';
 import SideBar from '../../components/sidebar';
 import { BellOutlined, LeftOutlined, LogoutOutlined, UserOutlined } from '@ant-design/icons';
 import { Badge, Button, Layout } from 'antd';
@@ -12,13 +12,14 @@ import CommonDropdown from '../../components/dropdown';
 const { Sider, Content } = Layout;
 
 const MainLayout = () => {
+  const navigate = useNavigate();
   const [collapsed, setCollapsed] = useState(false);
   const userMenuItems = [
     {
       key: 'profile',
       label: 'Thông tin cá nhân',
       icon: <UserOutlined />,
-      onClick: () => console.log('Đi đến trang profile'),
+      onClick: () => navigate('/user-info'),
     },
     {
       type: 'divider',
@@ -28,7 +29,7 @@ const MainLayout = () => {
       label: 'Đăng xuất',
       icon: <LogoutOutlined />,
       danger: true,
-      onClick: () => console.log('Đăng xuất'),
+      onClick: () => navigate('/auth'),
     },
   ];
   return (
@@ -103,12 +104,12 @@ const MainLayout = () => {
           width={220}
           collapsedWidth={80}
           onCollapse={(value) => setCollapsed(value)}
-          className="fixed top-[65px] left-0 h-[calc(100vh-65px)] overflow-auto bg-white shadow-md"
+          className="fixed top-[65px] left-0 h-[calc(100vh-65px)] overflow-auto bg-white"
           style={{ position: 'fixed', overflow: 'visible' }}
         >
           <SideBar collapsed={collapsed} />
           <div
-            className={`bg-orange absolute top-[20vh] right-[-16px] flex h-8 w-8 cursor-pointer items-center justify-center rounded-full transition-all duration-300`}
+            className={`bg-red absolute top-[20vh] right-[-16px] flex h-8 w-8 cursor-pointer items-center justify-center rounded-full text-white transition-all duration-300`}
             onClick={() => setCollapsed(!collapsed)}
           >
             <LeftOutlined

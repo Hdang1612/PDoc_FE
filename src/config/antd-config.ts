@@ -37,13 +37,13 @@ export const antdTheme: ThemeConfig = {
 
   components: {
     Layout: {
-      headerBg: '#fff',
-      siderBg: '#fff',
-      footerBg: '#fff',
+      headerBg: '#rgba(255, 255, 255, 0.3)',
+      siderBg: '#rgba(255, 255, 255, 0.3)',
+      footerBg: '#rgba(255, 255, 255, 0.3)',
     },
     Menu: {
-      itemBg: '#fff',
-      popupBg: '#fff',
+      itemBg: '##rgba(255, 255, 255, 0.3)',
+      popupBg: '##rgba(255, 255, 255, 0.3)',
       iconSize: 16,
       collapsedIconSize: 16,
     },
@@ -51,8 +51,9 @@ export const antdTheme: ThemeConfig = {
       controlHeight: 36,
       borderRadius: 6,
       fontWeight: 500,
-      defaultHoverBg: '#fc8d59',
-      defaultBg: '#fc8d59',
+      // defaultHoverBg: '#',
+      defaultBg: '#fff',
+      colorText: '#000',
     },
     Input: {
       controlHeight: 40,

@@ -31,6 +31,31 @@ const Home = () => {
     name: string;
     email: string;
   }
+
+  interface User {
+    key: React.Key;
+    name: string;
+    age: number;
+    address: string;
+  }
+
+  const userColumns: TableColumnsType<User> = [
+    { title: 'Name', dataIndex: 'name' },
+    { title: 'Age', dataIndex: 'age' },
+    { title: 'Address', dataIndex: 'address' },
+  ];
+
+  const userData: User[] = Array.from({ length: 5 }).map((_, i) => ({
+    key: i,
+    name: `User ${i}`,
+    age: 25 + i,
+    address: `Hanoi, Street ${i}`,
+  }));
+
+  const handleDelete = (deletedKeys: React.Key[]) => {
+    console.log('Deleted rows:', deletedKeys);
+  };
+
   const handleSubmit = () => {
     showSuccess('Thêm mới thành công!');
   };
@@ -144,12 +169,7 @@ const Home = () => {
 
       <DateInput label="Khoảng thời gian" value={range} mode="range" onChange={setRange} />
       <div className="p-4">
-        <TableBase<User>
-          columns={columns}
-          dataSource={data}
-          rowKey="id"
-          pagination={false} // ✅ dùng pagination riêng
-        />
+        <TableBase<User> columns={userColumns} data={userData} onDelete={handleDelete} />
 
         <PaginationBase
           current={current}

@@ -24,6 +24,8 @@ interface CommonModalProps {
   keyboard?: boolean;
   /** ClassName tùy chỉnh */
   className?: string;
+  cancelText?: string;
+  okText?: string;
 }
 
 /**
@@ -41,6 +43,8 @@ const CommonModal: React.FC<CommonModalProps> = ({
   maskClosable = true,
   keyboard = true,
   className,
+  okText,
+  cancelText,
 }) => {
   return (
     <Modal
@@ -48,6 +52,8 @@ const CommonModal: React.FC<CommonModalProps> = ({
       title={title}
       onOk={onOk}
       onCancel={onCancel}
+      okText={okText}
+      cancelText={cancelText}
       confirmLoading={confirmLoading}
       footer={footer !== undefined ? footer : undefined}
       width={width}

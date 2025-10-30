@@ -11,7 +11,7 @@ interface SubjectCardProps {
   questions: number;
   views: number;
   orgName: string;
-  width: string | number;
+  width?: string | number;
   loading: boolean;
   onClick?: () => void;
 }

@@ -12,6 +12,7 @@ import ForgotPwdForm from '../pages/auth/components/ForgotPwdForm';
 import SignUpForm from '../pages/auth/components/SignUpForm';
 import ConfirmOTP from '../pages/auth/components/ConfirmOTP';
 import ProtectedRoute from './ProtectedRoute';
+import UserInfo from '../pages/user-info';
 
 // Lazy load pages
 const Home = lazy(() => import('../pages/Home'));
@@ -29,6 +30,7 @@ const AppRoutes = () => {
           children: [
             { path: 'home', element: <Home /> },
             { path: 'document', element: <Document /> },
+            { path: 'user-info', element: <UserInfo /> },
           ],
         },
       ],
