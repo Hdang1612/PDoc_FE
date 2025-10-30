@@ -24,7 +24,7 @@ export const antdTheme: ThemeConfig = {
 
     // Layout
     controlHeight: 32,
-    colorBgLayout: 'rgba(255, 255, 255, 0.3)',
+    colorBgLayout: 'rgba(0, 0, 0, 0)',
 
     // Spacing - có thể tùy chỉnh theo design system của bạn
     marginXS: 8,
@@ -37,13 +37,13 @@ export const antdTheme: ThemeConfig = {
 
   components: {
     Layout: {
-      headerBg: '#rgba(255, 255, 255, 0.3)',
-      siderBg: '#rgba(255, 255, 255, 0.3)',
-      footerBg: '#rgba(255, 255, 255, 0.3)',
+      headerBg: 'rgba(249, 249, 249, 0.7)',
+      siderBg: 'rgba(249, 249, 249, 0.7)',
+      footerBg: 'rgba(249, 249, 249, 0.7)',
     },
     Menu: {
-      itemBg: '##rgba(255, 255, 255, 0.3)',
-      popupBg: '##rgba(255, 255, 255, 0.3)',
+      itemBg: '#rgba(249, 249, 249, 0.7)',
+      popupBg: '#rgba(249, 249, 249, 0.7)',
       iconSize: 16,
       collapsedIconSize: 16,
     },

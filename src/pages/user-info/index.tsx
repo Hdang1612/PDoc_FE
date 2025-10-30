@@ -35,7 +35,7 @@ const UserInfo = () => {
   return (
     <div>
       <h1 className="heading-page">Thông tin cá nhân</h1>
-      <div className="shadow-tertiary w-full rounded-sm bg-white px-10 py-4">
+      <div className="shadow-tertiary w-full rounded-sm bg-[#ffffff] px-10 py-6">
         <div className="btn-container mb-5 flex gap-2">
           <Button
             onClick={() => setOpen(true)}

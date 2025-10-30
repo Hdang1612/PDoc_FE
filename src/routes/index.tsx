@@ -13,6 +13,7 @@ import SignUpForm from '../pages/auth/components/SignUpForm';
 import ConfirmOTP from '../pages/auth/components/ConfirmOTP';
 import ProtectedRoute from './ProtectedRoute';
 import UserInfo from '../pages/user-info';
+import DocumentDetail from '../pages/doc-detail';
 
 // Lazy load pages
 const Home = lazy(() => import('../pages/Home'));
@@ -31,6 +32,7 @@ const AppRoutes = () => {
             { path: 'home', element: <Home /> },
             { path: 'document', element: <Document /> },
             { path: 'user-info', element: <UserInfo /> },
+            { path: 'document/:id', element: <DocumentDetail /> },
           ],
         },
       ],
